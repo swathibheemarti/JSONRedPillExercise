@@ -29,18 +29,20 @@ http.get("http://maccherone.com/share/1000-snapshots-overlap-with-Feb-2012.json"
 
             if((validFrom.isBefore(febStart) || validFrom.isSame(febStart)) && validTo.isAfter(febStart)){
                 if(validTo.isBefore(febEnd)){
-                    feb2012JobDaysCnt += validTo.diff(febStart,'days');
+                    feb2012JobDaysCnt += getWeekDays(febStart, validTo);
                 }else if(validTo.isAfter(febEnd) || validTo.isSame(febEnd)){
-                    feb2012JobDaysCnt += febEnd.diff(febStart,'days');
+                    feb2012JobDaysCnt += getWeekDays(febStart, febEnd);
                 }
             }else if(validFrom.isAfter(febStart) && (validFrom.isBefore(febEnd) || validFrom.isSame(febEnd)) && validTo.isAfter(validFrom)){
                 if(validTo.isBefore(febEnd)){
-                    feb2012JobDaysCnt += validTo.diff(validFrom, 'days');
+                    feb2012JobDaysCnt += getWeekDays(validFrom, validTo);
                 }else{
-                    feb2012JobDaysCnt += febEnd.diff(validFrom, 'days');
+                    feb2012JobDaysCnt += getWeekDays(validFrom, febEnd);
                 }
             }
         }
+
+        
 
     });
 
@@ -49,6 +51,16 @@ http.get("http://maccherone.com/share/1000-snapshots-overlap-with-Feb-2012.json"
 });
 
 function getWeekDays(startDate, endDate){
-    
+    var weekDays = 0;
+    var currentDay = startDate;
+
+    while(currentDay.isBefore(endDate) || currentDay.isSame(endDate)){
+        if(currentDay.day() != 0 && currentDay.day() != 6){
+            weekDays++;
+        }
+        currentDay.add('days',1);
+    }
+
+    return weekDays;
 }
 
