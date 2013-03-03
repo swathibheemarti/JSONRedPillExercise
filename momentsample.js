@@ -12,6 +12,7 @@ console.log(moment('9999-01-01T00:00:00.000Z').isAfter(moment('2012-01-20T01:30:
 console.log(getWeekDays(moment('2013-01-01T00:00:00.000Z'), moment('2013-01-31T00:00:00.000Z')));
 */
 
+/*
 console.log(moment("2012-01-20T01:30:52.851Z", "YYYY-MM-DDTHH:mm:ss.SSSZ").hours());
 console.log(moment("2012-01-20T01:30:52.851Z", "YYYY-MM-DDTHH:mm:ss.SSSZ").minutes());
 console.log(moment("2012-01-20T01:30:52.851Z", "YYYY-MM-DDTHH:mm:ss.SSSZ").seconds());
@@ -22,7 +23,12 @@ console.log(moment(test.format("YYYY-MM-DD") + "T17:52.851Z").format());
 console.log(moment().year() == '2013');
 
 console.log(moment('2012-02-15T00:25:10.653Z').isAfter(moment('2012-02-01T00:00:00.000Z')));
+*/
 
+var test1 = moment("2012-01-20T01:30:52.851Z", "YYYY-MM-DDTHH:mm:ss.SSSZ");
+var test2 = moment("2012-01-20T20:30:52.851Z", "YYYY-MM-DDTHH:mm:ss.SSSZ");
+
+console.log(test1.hours() - test2.hours());
 
 
 

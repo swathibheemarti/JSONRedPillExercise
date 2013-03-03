@@ -1,7 +1,7 @@
 var http = require('http');
 var moment = require('./moment');
 
-http.get("http://localhost/test.json", function(res){
+http.get("http://maccherone.com/share/1000-snapshots-overlap-with-Feb-2012.json", function(res){
 
     var jsonString = '';
 
@@ -101,7 +101,7 @@ http.get("http://localhost/test.json", function(res){
         }
 
 
-        console.log('Total hours spent in each scheduled state across the pieces of work in feb 2012\n\n');
+        console.log('\n Total hours spent in each scheduled state across the pieces of work in feb 2012\n');
         console.log('Idea : ' + feb2012IdeaHoursCnt);
         console.log('Accepted : ' + feb2012AcceptedHoursCnt);
         console.log('Completed : ' + feb2012CompletedHoursCnt);
@@ -131,9 +131,9 @@ function getWeekDayHours(startDate, endDate, validFrom, validTo){
             if(validFrom.isBefore(currentDay09AM) && validTo.isAfter(currentDay05PM)){
                 weekDayHours += 8;
             }else if(validFrom.isBefore(currentDay09AM)){
-                weekDayHours += validTo.getHours() - currentDay09AM.getHours();
+                weekDayHours += validTo.hours() - currentDay09AM.hours();
             }else if(validTo.isAfter(currentDay05PM)){
-                weekDayHours += currentDay05PM.getHours() - validFrom.getHours();
+                weekDayHours += currentDay05PM.hours() - validFrom.hours();
             }
         }
         currentDay.add('days',1);
